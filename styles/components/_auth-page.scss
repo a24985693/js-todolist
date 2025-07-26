@@ -1,0 +1,97 @@
+.auth-page {
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+
+}
+
+.auth-image-section {
+  @media (min-width: 768px) {
+    flex: 1;
+  }
+
+  .auth-illustration {
+    max-width: 100%;
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.auth-form-section {
+  flex: 1;
+  
+  h2 {
+    text-align: center;
+    margin-bottom:32px;
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 16px;
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+
+    &[type="password"] {
+      padding-right: 36px;
+    }
+  }
+
+  .password-group {
+    position: relative;
+
+    input {
+      margin-bottom: 0;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+
+  .login-alert, .signup-alert {
+    color: #D87355;
+    font-weight: 700;
+  }
+
+  .button-group {
+    text-align: center;
+    margin-top: 24px;
+
+    button {
+      width: 128px;
+      height: 48px;
+      display: block;
+      margin: 0 auto 24px;
+    }
+    
+    a {
+      text-decoration: none;
+      font-weight: 700;
+      color: $secondary-color;
+    }
+  }
+}

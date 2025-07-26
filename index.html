@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/all.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <h1>
+        <img src="./images/logo.png" alt="TodoList" class="logo">
+      </h1>
+      <a href="#" type="button" class="logout" id="logoutButton">登出</a>
+    </div>
+    <!-- 登入與註冊畫面 -->
+    <div class="auth-page" id="authPage">
+      <div class="auth-image-section">
+        <img src="./images/auth.png" class="auth-illustration" alt="todolist圖片">
+      </div>
+      <div class="auth-form-section">
+        <h2>最實用的線上代辦事項服務</h2>
+
+        <!-- 登入表單  -->
+        <form action="#" method="post" class="auth-form" id="loginForm">
+          <label for="loginEmail">Email*</label>
+          <input type="email" id="loginEmail" placeholder="請輸入Email"
+            autocomplete="username" required>
+  
+          <label for="loginPwd">密碼*</label>
+          <div class="password-group">
+            <input type="password" id="loginPwd" placeholder="請輸入密碼"
+              autocomplete="current-password" required>
+            <span id="toggleLoginPwd" class="toggle-password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </div>
+          <span class="login-alert display-none" id="loginAlert"></span>
+
+          <div class="button-group">
+            <button type="submit">登入</button>
+            <a href="#" id="signupLink">註冊帳號</a>
+          </div>
+        </form>
+
+        <!-- 註冊表單  -->
+        <form action="#" method="post" class="auth-form display-none" id="signupForm">
+          <label for="signupEmail">Email*</label>
+          <input type="email" id="signupEmail" placeholder="請輸入Email"
+            autocomplete="username" required>
+
+          <label for="signupName">您的暱稱*</label>
+          <input type="text" id="signupName" placeholder="請輸入您的暱稱" required>
+
+          <label for="signupPwd">密碼*</label>
+          <div class="password-group mb-16">
+            <input type="password" id="signupPwd" placeholder="請輸入密碼"
+              autocomplete="new-password" required>
+            <span id="toggleSignupPwd" class="toggle-password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </div>
+
+          <label for="signupPwdConfirm">再次輸入密碼*</label>
+          <div class="password-group">
+            <input type="password" id="signupPwdConfirm" placeholder="請再次輸入密碼"
+              autocomplete="new-password" required>
+            <span id="togglePwdConfirm" class="toggle-password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </div>
+          <span class="signup-alert display-none" id="signupAlert"></span>
+
+          <div class="button-group">
+            <button type="submit">註冊</button>
+            <a href="#" id="loginLink">登入</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Todo List畫面 -->
+    <div class="todolist-page display-none" id="todolistPage">
+      <div class="input-group">
+        <input type="text" placeholder="新增代辦事項" id="todolistInput" 
+          class="todolist-input">
+        <button id="addTodoButton">+</button>
+      </div>
+      <div class="todolist">
+        <ul class="tab" id="tab">
+          <li data-status="all" class="active">全部</li>
+          <li data-status="undone">待完成</li>
+          <li data-status="done">已完成</li>
+        </ul>
+        <ul class="list" id="list">
+        </ul>
+        <div class="list-footer">
+          <p class="undone-number" id="undoneNumber">0個待完成項目</p>
+          <a href="#" id="clearAll">清除已完成項目</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://kit.fontawesome.com/a9364419c2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+  <script src="./js/all.js"></script>
+</body>
+</html>
