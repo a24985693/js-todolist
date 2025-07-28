@@ -355,7 +355,7 @@ toggleLoginPwd.addEventListener('click', () => {
 // 新增
 addTodoButton.addEventListener('click', () => {
   const todolistInput = document.querySelector('#todolistInput');
-  if(todolistInput.value != '') {
+  if(todolistInput.value.trim() != '') {
     addTodo(todolistInput.value);
   } else {
     alert('新增代辦事項不能為空');
