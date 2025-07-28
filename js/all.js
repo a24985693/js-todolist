@@ -4,6 +4,8 @@ let token = '';
 let undoneNum;
 // 已完成事項 ID
 let doneListId = [];
+// 被點擊的標籤
+let tabTarget;
 
 // 認證相關表單和連結
 const signupForm = document.querySelector('#signupForm');
@@ -215,7 +217,7 @@ function delTodo(id, type) {
       alert('全部刪除成功!');
     }
 
-    getTodo();
+    getTodo(tabTarget);
   })
   .catch(err => {
     const message = err?.response?.data?.message || '發生錯誤，請稍後再試';
@@ -413,10 +415,12 @@ clearAll.addEventListener('click', () => {
 
 // 事項分類
 tab.addEventListener('click', e=> {
+  tabTarget = e.target.dataset.status;
+
   document.querySelectorAll('#tab li').forEach(item => {
     item.classList.remove('active');
   });
   e.target.classList.add('active');
 
-  getTodo(e.target.dataset.status);
+  getTodo(tabTarget);
 })
