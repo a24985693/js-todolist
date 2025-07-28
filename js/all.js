@@ -206,10 +206,15 @@ function addTodo(todo) {
 }
 
 // 刪除事項
-function delTodo(id) {
+function delTodo(id, type) {
   axios.delete(`${url}/todos/${id}`)
   .then(res => {
-    alert('刪除成功!');
+    if(type === 'single') {
+      alert('刪除成功!');
+    }else if(type === 'all'){
+      alert('全部刪除成功!');
+    }
+
     getTodo();
   })
   .catch(err => {
@@ -370,7 +375,7 @@ list.addEventListener('click', e => {
   // 點擊刪除按鈕
   if(delButton) {
     if(confirm('確定要刪除嗎')) {
-      delTodo(delButton.dataset.id);
+      delTodo(delButton.dataset.id, 'single');
     }
 
   // 點擊編輯按鈕
@@ -396,7 +401,13 @@ clearAll.addEventListener('click', () => {
     alert('沒有已完成項目可刪除！');
 
   } else if (confirm('確定要全部清除已完成事項？')) {
-    doneListId.forEach(id => delTodo(id));
+    doneListId.forEach((id, i) => {
+      // 最後一個時再顯示 alert('全部刪除成功!');
+      if(doneListId.length === i+1) {
+        delTodo(id, 'all');
+      }
+      delTodo(id);
+    })
   }
 })
 
