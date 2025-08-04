@@ -1,11 +1,14 @@
 const url = 'https://todoo.5xcamp.us';
 let token = '';
+
 // 未完成事項數量
 let undoneNum;
+
 // 已完成事項 ID
 let doneListId = [];
-// 被點擊的標籤
-let tabTarget;
+
+// 點擊分類
+let currentTabTarget;
 
 // 認證相關表單和連結
 const signupForm = document.querySelector('#signupForm');
@@ -34,7 +37,7 @@ const clearAll = document.querySelector('#clearAll');
 
 // 頁籤
 const tab = document.querySelector('#tab');
-
+const allTab = document.querySelector('li[data-status="all"]');
 
 // ===== 函式 =====
 
@@ -199,7 +202,7 @@ function addTodo(todo) {
     }
   })
   .then(res => {
-    getTodo();
+    updateTabStatus();
   })
   .catch(err => {
     const message = err?.response?.data?.message || '發生錯誤，請稍後再試';
@@ -217,7 +220,7 @@ function delTodo(id, type) {
       alert('全部刪除成功!');
     }
 
-    getTodo(tabTarget);
+    updateTabStatus(currentTabTarget);
   })
   .catch(err => {
     const message = err?.response?.data?.message || '發生錯誤，請稍後再試';
@@ -269,6 +272,15 @@ function toggleTodo(id) {
   })
 }
 
+// 切換事項分類
+function updateTabStatus(target = allTab) {
+  document.querySelectorAll('#tab li').forEach(item => {
+    item.classList.remove('active');
+  });
+  target.classList.add('active');
+
+  getTodo(target.dataset.status);
+}
 
 // ===== 事件監聽 =====
 
@@ -415,12 +427,6 @@ clearAll.addEventListener('click', () => {
 
 // 事項分類
 tab.addEventListener('click', e=> {
-  tabTarget = e.target.dataset.status;
-
-  document.querySelectorAll('#tab li').forEach(item => {
-    item.classList.remove('active');
-  });
-  e.target.classList.add('active');
-
-  getTodo(tabTarget);
+  currentTabTarget = e.target;
+  updateTabStatus(e.target);
 })
